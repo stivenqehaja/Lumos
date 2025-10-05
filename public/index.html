@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lumos Studio</title>
-    <link rel="stylesheet" href="css/style.css" />
-</head>
+
+<!-- INCLUDE HEAD FOR CSS AND META TAGS-->
+<head data-include="/partials/head.html"></head>
 
 <body>
-  <div data-include="/partials/navbar.html"></div>
 
-    <!-- <h1>Welcome to Lumos</h1>
-    <p>We create cinematic experiences.</p>
-     -->
+    <!-- NAVBAR -->
+    <div data-include="/partials/navbar.html"></div>
+
     <section class="image-section">
         <div class="landing-div">
-            <h1 style="transform: scale(5);">WE ARE <br>LUMOS</h1>
+            <h1>WE ARE <br>LUMOS</h1>
         </div>
     </section>
 
@@ -33,25 +29,15 @@
                 <source src="/videos/bell.mp4" type="video/mp4" />
             </video>
         </div>
-        <p style="transform: scale(3);">“We Strive to Elevate what it means to Create Exceptional Real Estate Videos”</p>
+        <p>We Strive to Elevate what it means to Create Exceptional Real Estate Videos</p>
         <button  class="button-normal" onclick="window.location.href='/about'">About Us</button>
     </section>
 
+    <!-- INCLUDE FOOTER -->
     <div data-include="/partials/footer.html"></div>
 
     <script type="module" src="/js/include.js"></script>
+    <script type="module" src="/js/theme.js"></script>
 </body>
 
 </html>
-
-
-  <!-- <header>
-    <h1>Welcome to My Static Site</h1>
-    <img src="images/banner.jpg" alt="Banner Image" />
-  </header>
-
-
-
-  <footer>
-    <p>&copy; 2025 My Website</p>
-  </footer> -->

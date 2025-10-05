@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lumos Studio</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
+
+<!-- INCLUDE HEAD FOR CSS AND META TAGS-->
+<head data-include="/partials/head.html"></head>
 
 <body>
 
-    <div data-include="partials/navbar.html"></div>
-    <h1>This is Contact</h1>
-    
+    <div data-include="/partials/navbar.html"></div>
+
+    <section class="about-section">
+        <h1>Contact Us</h1>
+        <p style="text-align: center; max-width: 800px; color: var(--text-secondary); font-size: 1.2rem; line-height: 1.8;">
+            Ready to bring your vision to life? Get in touch with us to discuss your next project.
+        </p>
+    </section>
+
+    <!-- INCLUDE FOOTER -->
+    <div data-include="/partials/footer.html"></div>
+
     <script type="module" src="/js/include.js"></script>
+    <script type="module" src="/js/theme.js"></script>
 </body>
+
 </html>
