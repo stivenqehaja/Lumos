@@ -15,10 +15,11 @@ export const generateClientLink = async (req, res) => {
             expiresAt
         });
 
-        const clientUrl = `${process.env.BASE_URL}/client?accessCode=${accessCode}`;
+        const clientUrl = `${process.env.BASE_URL}/client?code=${accessCode}`;
 
         res.json({
             client,
+            accessCode,
             url: clientUrl
         });
     } catch (error) {
@@ -43,10 +44,12 @@ export const validateAccessCode = async (req, res) => {
         }
 
         res.json({
-            id: client.id,
-            companyName: client.companyName,
-            commercialDescription: client.commercialDescription,
-            expiresAt: client.expiresAt
+            client: {
+                id: client.id,
+                companyName: client.companyName,
+                commercialDescription: client.commercialDescription,
+                expiresAt: client.expiresAt
+            }
         });
     } catch (error) {
         res.status(500).json({ error: 'Server error' });

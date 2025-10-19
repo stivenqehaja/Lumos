@@ -1,0 +1,125 @@
+.performer-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+}
+
+.performer-card:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 10px 40px var(--accent-glow);
+    transform: translateY(-5px);
+}
+
+.performer-card.selected {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.performer-image {
+    aspect-ratio: 3/4;
+    background: var(--bg-tertiary);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.performer-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.performer-image:hover img {
+    transform: scale(1.05);
+}
+
+.no-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-family: 'Inter', sans-serif;
+}
+
+.selected-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--accent-primary);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.performer-info {
+    padding: 1.5rem;
+    flex: 1;
+}
+
+.performer-info h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.performer-details,
+.performer-attributes {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+}
+
+.performer-attributes {
+    font-size: 0.85rem;
+}
+
+.performer-actions {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0 1.5rem 1.5rem;
+}
+
+.performer-actions button {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+}
+
+.button-selected {
+    background: var(--bg-tertiary);
+    border: 2px solid var(--accent-primary);
+    border-radius: 8px;
+    color: var(--accent-primary);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 0.875rem 2rem;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-transform: uppercase;
+}
+
+.button-selected:hover {
+    background: var(--accent-primary);
+    color: white;
+    box-shadow: 0 0 30px var(--accent-glow);
+    transform: translateY(-2px);
+}

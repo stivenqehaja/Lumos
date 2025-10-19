@@ -26,9 +26,10 @@ const Performer = sequelize.define('Performer', {
             isEmail: true
         }
     },
-    phone: {
+    phoneNumber: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        field: 'phone'
     },
     gender: {
         type: DataTypes.STRING,
@@ -63,10 +64,10 @@ const Performer = sequelize.define('Performer', {
         allowNull: true
     },
     images: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.ARRAY(DataTypes.TEXT),
         allowNull: true,
         defaultValue: [],
-        comment: 'Array of up to 9 image URLs'
+        comment: 'Array of up to 9 images (base64 encoded or URLs)'
     }
 }, {
     timestamps: true
