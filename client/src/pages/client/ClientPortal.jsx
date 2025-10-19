@@ -52,7 +52,7 @@ const ClientPortal = () => {
     const loadAllPerformers = async () => {
         try {
             const response = await performerAPI.search({});
-            setPerformers(response.data.performers || []);
+            setPerformers(response.data || []);
         } catch (error) {
             console.error('Failed to load performers');
         } finally {

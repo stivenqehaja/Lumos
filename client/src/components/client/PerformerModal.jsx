@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './PerformerModal.css';
 
 const PerformerModal = ({ performer, isSelected, onToggleSelect, onClose, showSelectButton }) => {
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [currentImageIndex, setCurrentImageIndex] = useState(performer.profileImageIndex || 0);
 
     const calculateAge = (birthday) => {
         const today = new Date();
@@ -115,7 +115,7 @@ const PerformerModal = ({ performer, isSelected, onToggleSelect, onClose, showSe
 
                             <div className="detail-item">
                                 <span className="detail-label">Phone</span>
-                                <span className="detail-value">{performer.phoneNumber}</span>
+                                <span className="detail-value">{performer.phone}</span>
                             </div>
                         </div>
 

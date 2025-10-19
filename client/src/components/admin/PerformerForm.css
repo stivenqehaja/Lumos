@@ -38,6 +38,13 @@
     margin-bottom: 1.5rem;
 }
 
+.section-hint {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
 .form-row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

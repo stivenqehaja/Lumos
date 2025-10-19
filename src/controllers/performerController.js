@@ -31,6 +31,7 @@ export const createPerformer = async (req, res) => {
         const performer = await Performer.create(req.body);
         res.status(201).json(performer);
     } catch (error) {
+        console.error('Error creating performer:', error);
         res.status(400).json({ error: error.message });
     }
 };
@@ -46,6 +47,7 @@ export const updatePerformer = async (req, res) => {
         await performer.update(req.body);
         res.json(performer);
     } catch (error) {
+        console.error('Error updating performer:', error);
         res.status(400).json({ error: error.message });
     }
 };

@@ -16,7 +16,7 @@ const PerformersList = ({ onClose }) => {
     const fetchPerformers = async () => {
         try {
             const response = await performerAPI.getAll();
-            setPerformers(response.data.performers || []);
+            setPerformers(response.data || []);
         } catch (error) {
             console.error('Failed to load performers');
         } finally {
@@ -43,15 +43,20 @@ const PerformersList = ({ onClose }) => {
     const handleSubmit = async (formData) => {
         try {
             if (selectedPerformer) {
+                console.log('Updating performer:', selectedPerformer.id, formData);
                 await performerAPI.update(selectedPerformer.id, formData);
             } else {
+                console.log('Creating new performer:', formData);
                 await performerAPI.create(formData);
             }
             setShowForm(false);
             setSelectedPerformer(null);
             fetchPerformers();
         } catch (error) {
-            alert(error.response?.data?.error || 'Failed to save performer');
+            console.error('Error saving performer:', error);
+            const errorMsg = error.response?.data?.error || error.message || 'Unknown error';
+            const statusCode = error.response?.status || 'No status';
+            alert(`Failed to save performer\n\nError: ${errorMsg}\nStatus: ${statusCode}\n\nCheck browser console for details.`);
         }
     };
 
@@ -99,8 +104,8 @@ const PerformersList = ({ onClose }) => {
                             {performers.map((performer) => (
                                 <div key={performer.id} className="performer-list-item">
                                     <div className="performer-thumb">
-                                        {performer.images?.[0] ? (
-                                            <img src={performer.images[0]} alt={performer.firstName} />
+                                        {performer.images?.length > 0 ? (
+                                            <img src={performer.images[performer.profileImageIndex || 0]} alt={performer.firstName} />
                                         ) : (
                                             <div className="no-thumb">No Photo</div>
                                         )}

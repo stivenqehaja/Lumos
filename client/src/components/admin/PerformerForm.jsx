@@ -7,7 +7,7 @@ const PerformerForm = ({ performer = null, onSubmit, onCancel }) => {
         firstName: '',
         lastName: '',
         birthday: '',
-        phoneNumber: '',
+        phone: '',
         email: '',
         gender: '',
         height: '',
@@ -16,6 +16,7 @@ const PerformerForm = ({ performer = null, onSubmit, onCancel }) => {
         skinTone: '',
         distinctiveMarks: '',
         images: [],
+        profileImageIndex: 0,
     });
 
     useEffect(() => {
@@ -24,7 +25,7 @@ const PerformerForm = ({ performer = null, onSubmit, onCancel }) => {
                 firstName: performer.firstName || '',
                 lastName: performer.lastName || '',
                 birthday: performer.birthday || '',
-                phoneNumber: performer.phoneNumber || '',
+                phone: performer.phone || '',
                 email: performer.email || '',
                 gender: performer.gender || '',
                 height: performer.height || '',
@@ -33,6 +34,7 @@ const PerformerForm = ({ performer = null, onSubmit, onCancel }) => {
                 skinTone: performer.skinTone || '',
                 distinctiveMarks: performer.distinctiveMarks || '',
                 images: performer.images || [],
+                profileImageIndex: performer.profileImageIndex || 0,
             });
         }
     }, [performer]);
@@ -48,6 +50,13 @@ const PerformerForm = ({ performer = null, onSubmit, onCancel }) => {
         setFormData({
             ...formData,
             images,
+        });
+    };
+
+    const handleProfileImageChange = (index) => {
+        setFormData({
+            ...formData,
+            profileImageIndex: index,
         });
     };
 
@@ -136,15 +145,15 @@ const PerformerForm = ({ performer = null, onSubmit, onCancel }) => {
 
                 <div className="form-row">
                     <div className="form-group">
-                        <label className="form-label" htmlFor="phoneNumber">
+                        <label className="form-label" htmlFor="phone">
                             Phone Number *
                         </label>
                         <input
                             type="tel"
-                            id="phoneNumber"
-                            name="phoneNumber"
+                            id="phone"
+                            name="phone"
                             className="form-input"
-                            value={formData.phoneNumber}
+                            value={formData.phone}
                             onChange={handleChange}
                             required
                         />
@@ -251,9 +260,12 @@ const PerformerForm = ({ performer = null, onSubmit, onCancel }) => {
 
             <div className="form-section">
                 <h3 className="section-title">Portfolio Images</h3>
+                <p className="section-hint">Upload images and click the star icon to set a profile picture</p>
                 <ImageUpload
                     images={formData.images}
                     onChange={handleImagesChange}
+                    profileImageIndex={formData.profileImageIndex}
+                    onProfileImageChange={handleProfileImageChange}
                     maxImages={9}
                 />
             </div>

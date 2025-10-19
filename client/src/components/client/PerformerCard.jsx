@@ -15,8 +15,8 @@ const PerformerCard = ({ performer, isSelected, onToggleSelect, onViewDetails, s
     return (
         <div className={`performer-card ${isSelected ? 'selected' : ''}`}>
             <div className="performer-image" onClick={onViewDetails}>
-                {performer.images && performer.images[0] ? (
-                    <img src={performer.images[0]} alt={`${performer.firstName} ${performer.lastName}`} />
+                {performer.images && performer.images.length > 0 ? (
+                    <img src={performer.images[performer.profileImageIndex || 0]} alt={`${performer.firstName} ${performer.lastName}`} />
                 ) : (
                     <div className="no-image">No Photo</div>
                 )}

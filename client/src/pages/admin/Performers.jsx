@@ -17,7 +17,7 @@ const Performers = () => {
     const fetchPerformers = async () => {
         try {
             const response = await performerAPI.getAll();
-            setPerformers(response.data.performers || []);
+            setPerformers(response.data || []);
         } catch (err) {
             setError('Failed to load performers');
         } finally {
@@ -28,15 +28,20 @@ const Performers = () => {
     const handleSubmit = async (formData) => {
         try {
             if (selectedPerformer) {
+                console.log('Updating performer:', selectedPerformer.id, formData);
                 await performerAPI.update(selectedPerformer.id, formData);
             } else {
+                console.log('Creating new performer:', formData);
                 await performerAPI.create(formData);
             }
             setShowForm(false);
             setSelectedPerformer(null);
             fetchPerformers();
         } catch (err) {
-            alert(err.response?.data?.error || 'Failed to save performer');
+            console.error('Error saving performer:', err);
+            const errorMsg = err.response?.data?.error || err.message || 'Unknown error';
+            const statusCode = err.response?.status || 'No status';
+            alert(`Failed to save performer\n\nError: ${errorMsg}\nStatus: ${statusCode}\n\nCheck browser console for details.`);
         }
     };
 
@@ -96,8 +101,8 @@ const Performers = () => {
                             {performers.map((performer) => (
                                 <div key={performer.id} className="performer-card">
                                     <div className="performer-image">
-                                        {performer.images?.[0] ? (
-                                            <img src={performer.images[0]} alt={`${performer.firstName} ${performer.lastName}`} />
+                                        {performer.images?.length > 0 ? (
+                                            <img src={performer.images[performer.profileImageIndex || 0]} alt={`${performer.firstName} ${performer.lastName}`} />
                                         ) : (
                                             <div className="no-image">No Photo</div>
                                         )}
