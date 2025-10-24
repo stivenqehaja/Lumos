@@ -3,7 +3,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
 import sequelize, { testConnection, syncDatabase } from './src/config/database.js';
+import swaggerSpec from './src/config/swagger.js';
 
 // Import routes
 import adminRoutes from './src/routes/adminRoutes.js';
@@ -25,35 +27,26 @@ app.use(cors());
 app.use(express.json({ limit: '100mb' })); // Increased limit for base64 images
 app.use(express.urlencoded({ extended: true, limit: '100mb' }));
 
+// Swagger API Documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+    customCss: '.swagger-ui .topbar { display: none }',
+    customSiteTitle: 'Lumos API Documentation',
+    customfavIcon: '/favicon.ico'
+}));
+
+// Swagger JSON endpoint
+app.get('/api-docs.json', (_req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(swaggerSpec);
+});
+
 // API Routes
 app.use('/api/admin', adminRoutes);
 app.use('/api/performers', performerRoutes);
 app.use('/api/client', clientRoutes);
 app.use('/api/email', emailRoutes);
 
-// Admin Panel Routes (BEFORE static middleware)
-app.get('/admin/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/admin/login.html'));
-});
-
-app.get('/admin/performers', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/admin/performers.html'));
-});
-
-app.get('/admin/casting-orders', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/admin/casting-orders.html'));
-});
-
-app.get('/admin', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/admin/index.html'));
-});
-
-// Client Routes
-app.get('/client', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/client/index.html'));
-});
-
-// Static Routes (Original website)
+// Public Marketing Website Routes (legacy - can be removed if not needed)
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });

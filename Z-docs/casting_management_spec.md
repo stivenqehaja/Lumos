@@ -16,7 +16,7 @@ It is built with an **MVC architecture** using **Express.js**, **PostgreSQL**, a
 | **Database** | PostgreSQL |
 | **ORM** | Sequelize or Prisma |
 | **Authentication** | JWT or encrypted URL tokens |
-| **Email Service** | Nodemailer + OpenAI API integration |
+| **Email Service** | Nodemailer + Claude AI (Anthropic) API integration |
 | **Deployment** | Vercel / Render / Railway |
 | **Environment Variables** | Managed via `.env` |
 
@@ -156,7 +156,7 @@ project-root/
 │   │   ├── aiService.js
 │   ├── config/
 │   │   ├── db.js
-│   │   ├── openai.js
+│   │   ├── aiClient.js
 │   ├── public/
 │   │   ├── css/
 │   │   ├── js/
@@ -176,7 +176,7 @@ project-root/
 PORT=3000
 DATABASE_URL=postgresql://user:password@localhost:5432/castingdb
 JWT_SECRET=your_jwt_secret_here
-OPENAI_API_KEY=your_openai_api_key_here
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
 EMAIL_USER=youremail@gmail.com

@@ -2,13 +2,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import ClientLinkGenerator from '../../components/admin/ClientLinkGenerator';
-import PerformersList from '../../components/admin/PerformersList';
 import './Dashboard.css';
 
 const Dashboard = () => {
     const { user } = useAuth();
     const [showLinkGenerator, setShowLinkGenerator] = useState(false);
-    const [showPerformersList, setShowPerformersList] = useState(false);
 
     return (
         <div className="page-container">
@@ -18,19 +16,6 @@ const Dashboard = () => {
                 </h1>
 
                 <div className="dashboard-grid">
-                    <div className="dashboard-card" onClick={() => setShowPerformersList(true)}>
-                        <div className="card-icon">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="9" cy="7" r="4"></circle>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                            </svg>
-                        </div>
-                        <h2>Quick Manage Performers</h2>
-                        <p>View, add, edit, and delete performers</p>
-                    </div>
-
                     <Link to="/admin/performers" className="dashboard-card">
                         <div className="card-icon">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -94,10 +79,6 @@ const Dashboard = () => {
 
             {showLinkGenerator && (
                 <ClientLinkGenerator onClose={() => setShowLinkGenerator(false)} />
-            )}
-
-            {showPerformersList && (
-                <PerformersList onClose={() => setShowPerformersList(false)} />
             )}
         </div>
     );

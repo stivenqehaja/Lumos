@@ -168,6 +168,15 @@ a {
     box-shadow: 0 10px 40px var(--shadow-color);
 }
 
+.card-clickable {
+    cursor: pointer;
+}
+
+.card-clickable:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px var(--accent-glow);
+}
+
 /* ==================== FORMS ==================== */
 .form-group {
     margin-bottom: 1.5rem;

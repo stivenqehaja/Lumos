@@ -1,18 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { performerAPI, clientAPI } from '../../services/api';
+import { useToast } from '../../contexts/ToastContext';
 import PerformerCard from '../../components/client/PerformerCard';
 import PerformerModal from '../../components/client/PerformerModal';
+import ConfirmModal from '../../components/common/ConfirmModal';
 import './ClientPortal.css';
 
 const ClientPortal = () => {
     const [searchParams] = useSearchParams();
+    const { showSuccess, showError } = useToast();
     const [performers, setPerformers] = useState([]);
     const [filteredPerformers, setFilteredPerformers] = useState([]);
     const [castingGroup, setCastingGroup] = useState([]);
     const [selectedPerformer, setSelectedPerformer] = useState(null);
     const [loading, setLoading] = useState(true);
     const [clientInfo, setClientInfo] = useState(null);
+    const [finalizeConfirm, setFinalizeConfirm] = useState(false);
     const [filters, setFilters] = useState({
         search: '',
         gender: '',
@@ -36,7 +40,7 @@ const ClientPortal = () => {
 
     useEffect(() => {
         applyFilters();
-    }, [performers, filters]);
+    }, [performers, filters, castingGroup]);
 
     const validateAndLoadClient = async () => {
         try {
@@ -45,7 +49,7 @@ const ClientPortal = () => {
             await loadAllPerformers();
             await loadCastingGroup(response.data.client.id);
         } catch (error) {
-            alert('Invalid or expired access link');
+            showError('Invalid or expired access link');
         }
     };
 
@@ -116,7 +120,11 @@ const ClientPortal = () => {
             });
         }
 
-        setFilteredPerformers(filtered);
+        // Sort: Selected performers first, then unselected in their original order
+        const selected = filtered.filter(p => isInCastingGroup(p.id));
+        const unselected = filtered.filter(p => !isInCastingGroup(p.id));
+
+        setFilteredPerformers([...selected, ...unselected]);
     };
 
     const calculateAge = (birthday) => {
@@ -156,7 +164,7 @@ const ClientPortal = () => {
 
     const handleToggleCastingGroup = async (performer) => {
         if (!clientInfo) {
-            alert('Please use a valid client access link');
+            showError('Please use a valid client access link');
             return;
         }
 
@@ -167,36 +175,44 @@ const ClientPortal = () => {
                     performerId: performer.id,
                 });
                 setCastingGroup(castingGroup.filter(p => p.id !== performer.id));
+                // showSuccess('Performer removed from casting group');
             } else {
                 await clientAPI.addToCastingGroup({
                     clientId: clientInfo.id,
                     performerId: performer.id,
                 });
                 setCastingGroup([...castingGroup, performer]);
+                // showSuccess('Performer added to casting group');
             }
         } catch (error) {
-            alert('Failed to update casting group');
+            showError('Failed to update casting group');
         }
     };
 
-    const handleFinalize = async () => {
+    const handleFinalize = () => {
         if (!clientInfo) return;
 
         if (castingGroup.length === 0) {
-            alert('Please select at least one performer');
+            showError('Please select at least one performer');
             return;
         }
 
-        if (!confirm(`Finalize casting with ${castingGroup.length} performer(s)?`)) {
-            return;
-        }
+        setFinalizeConfirm(true);
+    };
+
+    const confirmFinalize = async () => {
+        setFinalizeConfirm(false);
 
         try {
             await clientAPI.finalizeCastingGroup({ clientId: clientInfo.id });
-            alert('Casting finalized successfully!');
+            showSuccess('Casting finalized successfully!');
         } catch (error) {
-            alert('Failed to finalize casting');
+            showError('Failed to finalize casting');
         }
+    };
+
+    const cancelFinalize = () => {
+        setFinalizeConfirm(false);
     };
 
     if (loading) {
@@ -249,8 +265,6 @@ const ClientPortal = () => {
                             <option value="">All Genders</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
-                            <option value="Non-binary">Non-binary</option>
-                            <option value="Other">Other</option>
                         </select>
 
                         <input
@@ -349,6 +363,18 @@ const ClientPortal = () => {
                     showSelectButton={!!clientInfo}
                 />
             )}
+
+            {/* Finalize Confirmation Modal */}
+            <ConfirmModal
+                isOpen={finalizeConfirm}
+                title="Finalize Casting"
+                message={`Are you sure you want to finalize casting with ${castingGroup.length} performer(s)? This action cannot be undone.`}
+                confirmText="Yes, Finalize"
+                cancelText="No, Cancel"
+                onConfirm={confirmFinalize}
+                onCancel={cancelFinalize}
+                danger={false}
+            />
         </div>
     );
 };

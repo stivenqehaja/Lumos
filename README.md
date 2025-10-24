@@ -8,7 +8,7 @@ A full-stack casting management web platform for managing commercial performers 
 - **Database**: PostgreSQL with Sequelize ORM
 - **Frontend**: HTML, TailwindCSS, Vanilla JavaScript
 - **Authentication**: JWT tokens
-- **AI Integration**: OpenAI API for email generation
+- **AI Integration**: Claude AI (Anthropic) for email generation
 - **Email Service**: Nodemailer
 
 ## 📋 Features
@@ -17,7 +17,7 @@ A full-stack casting management web platform for managing commercial performers 
 - **Performer Management**: Add, edit, delete performers with 3-step deletion confirmation
 - **Generate Client Links**: Create secure 24-hour access links for clients
 - **Casting Orders**: View finalized casting selections
-- **AI Email Assistant**: Generate personalized emails using OpenAI
+- **AI Email Assistant**: Generate personalized emails using Claude AI
 - **Email Management**: Preview and send emails to selected performers
 
 ### Client Portal
@@ -32,7 +32,7 @@ A full-stack casting management web platform for managing commercial performers 
 ### 1. Prerequisites
 - Node.js (v16 or higher)
 - PostgreSQL database
-- OpenAI API key (for email generation)
+- Anthropic API key (for email generation)
 - Email service credentials (Gmail, etc.)
 
 ### 2. Installation
@@ -50,7 +50,7 @@ Create a `.env` file in the root directory:
 PORT=3000
 DATABASE_URL=postgresql://user:password@localhost:5432/castingdb
 JWT_SECRET=your_jwt_secret_here_change_this_in_production
-OPENAI_API_KEY=your_openai_api_key_here
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
 EMAIL_USER=youremail@gmail.com
@@ -91,7 +91,7 @@ project-root/
 ├── src/
 │   ├── config/
 │   │   ├── database.js          # Database configuration
-│   │   └── openai.js            # OpenAI configuration
+│   │   └── aiClient.js          # AI client configuration
 │   ├── models/
 │   │   ├── Admin.js             # Admin user model
 │   │   ├── Performer.js         # Performer model
@@ -109,8 +109,8 @@ project-root/
 │   │   ├── clientRoutes.js      # Client API routes
 │   │   └── emailRoutes.js       # Email API routes
 │   ├── services/
-│   │   ├── emailService.js      # Email sending service
-│   │   └── aiService.js         # OpenAI integration
+│   │   ├── emailService.js     # Email sending service
+│   │   └── aiService.js         # Claude AI integration
 │   └── middleware/
 │       └── auth.js              # JWT authentication
 ├── public/

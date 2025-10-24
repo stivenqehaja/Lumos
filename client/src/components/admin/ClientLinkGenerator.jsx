@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { clientAPI } from '../../services/api';
+import { useToast } from '../../contexts/ToastContext';
 import './ClientLinkGenerator.css';
 
 const ClientLinkGenerator = ({ onClose }) => {
+    const { showSuccess, showError } = useToast();
     const [formData, setFormData] = useState({
         companyName: '',
         commercialDescription: '',
@@ -26,8 +28,9 @@ const ClientLinkGenerator = ({ onClose }) => {
             const accessCode = response.data.accessCode;
             const link = `${window.location.origin}/client?code=${accessCode}`;
             setGeneratedLink(link);
+            showSuccess('Client link generated successfully!');
         } catch (error) {
-            alert('Failed to generate client link');
+            showError('Failed to generate client link');
         } finally {
             setLoading(false);
         }
@@ -35,7 +38,7 @@ const ClientLinkGenerator = ({ onClose }) => {
 
     const copyToClipboard = () => {
         navigator.clipboard.writeText(generatedLink);
-        alert('Link copied to clipboard!');
+        showSuccess('Link copied to clipboard!');
     };
 
     return (

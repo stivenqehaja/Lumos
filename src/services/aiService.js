@@ -1,4 +1,4 @@
-import openai from '../config/openai.js';
+import anthropic from '../config/aiClient.js';
 
 export const generateEmail = async (performer, commercialDescription, companyName) => {
     try {
@@ -24,23 +24,20 @@ The email should:
 Return only the email body content (without subject line or greeting/closing formalities - those will be added by the template).
 `;
 
-        const completion = await openai.chat.completions.create({
-            model: "gpt-4",
+        const message = await anthropic.messages.create({
+            model: "claude-3-5-sonnet-20241022",
+            max_tokens: 500,
+            temperature: 0.7,
+            system: "You are a professional casting director assistant who writes personalized, encouraging emails to performers.",
             messages: [
-                {
-                    role: "system",
-                    content: "You are a professional casting director assistant who writes personalized, encouraging emails to performers."
-                },
                 {
                     role: "user",
                     content: prompt
                 }
-            ],
-            temperature: 0.7,
-            max_tokens: 500
+            ]
         });
 
-        return completion.choices[0].message.content.trim();
+        return message.content[0].text.trim();
     } catch (error) {
         console.error('[AI] Error generating email:', error);
         throw new Error('Failed to generate email content');

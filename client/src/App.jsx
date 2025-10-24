@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
+import { ToastProvider } from './contexts/ToastContext';
 import Navbar from './components/common/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -8,14 +9,17 @@ import Login from './pages/admin/Login';
 import AdminDashboard from './pages/admin/Dashboard';
 import Performers from './pages/admin/Performers';
 import CastingOrders from './pages/admin/CastingOrders';
+import CastingOrderDetail from './pages/admin/CastingOrderDetail';
 import ClientPortal from './pages/client/ClientPortal';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import './styles/lumos.css';
+import './App.css';
 
 function App() {
     return (
-        <AuthProvider>
-            <Router>
+        <ToastProvider>
+            <AuthProvider>
+                <Router>
                 <Navbar />
                 <Routes>
                     {/* Public Routes */}
@@ -50,9 +54,18 @@ function App() {
                             </ProtectedRoute>
                         }
                     />
+                    <Route
+                        path="/admin/casting-orders/:id"
+                        element={
+                            <ProtectedRoute>
+                                <CastingOrderDetail />
+                            </ProtectedRoute>
+                        }
+                    />
                 </Routes>
-            </Router>
-        </AuthProvider>
+                </Router>
+            </AuthProvider>
+        </ToastProvider>
     );
 }
 

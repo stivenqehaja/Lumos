@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
+import { useToast } from '../../contexts/ToastContext';
 import './ImageUpload.css';
 
 const ImageUpload = ({ images = [], onChange, maxImages = 9, profileImageIndex = 0, onProfileImageChange }) => {
+    const { showError } = useToast();
     const [previews, setPreviews] = useState(images);
     const [selectedProfileIndex, setSelectedProfileIndex] = useState(profileImageIndex);
     const fileInputRef = useRef(null);
@@ -16,7 +18,7 @@ const ImageUpload = ({ images = [], onChange, maxImages = 9, profileImageIndex =
         const files = Array.from(e.target.files);
 
         if (previews.length + files.length > maxImages) {
-            alert(`You can only upload up to ${maxImages} images`);
+            showError(`You can only upload up to ${maxImages} images`);
             return;
         }
 
@@ -25,7 +27,7 @@ const ImageUpload = ({ images = [], onChange, maxImages = 9, profileImageIndex =
 
         for (const file of files) {
             if (!file.type.startsWith('image/')) {
-                alert(`${file.name} is not an image file`);
+                showError(`${file.name} is not an image file`);
                 continue;
             }
 

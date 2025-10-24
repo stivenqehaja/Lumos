@@ -174,7 +174,7 @@ export const getAllCastingOrders = async (req, res) => {
             order: [['createdAt', 'DESC']]
         });
 
-        res.json(orders);
+        res.json({ orders });
     } catch (error) {
         res.status(500).json({ error: 'Server error' });
     }

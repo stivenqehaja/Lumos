@@ -17,6 +17,19 @@
 .performer-card.selected {
     border-color: var(--accent-primary);
     box-shadow: 0 0 0 3px var(--accent-glow);
+    animation: selectPulse 0.4s ease-out;
+}
+
+@keyframes selectPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .performer-image {

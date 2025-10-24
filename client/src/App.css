@@ -40,3 +40,55 @@
 .read-the-docs {
   color: #888;
 }
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: var(--accent-primary);
+  color: white;
+  border: 2px solid var(--accent-primary);
+  border-radius: 8px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  position: fixed;
+  top: 90px;
+  left: 2rem;
+  z-index: 100;
+}
+
+.back-button:hover {
+  background: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+  box-shadow: 0 0 30px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+.back-button:active {
+  transform: translateY(0);
+}
+
+.back-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 768px) {
+  .back-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    top: 80px;
+    left: 1rem;
+  }
+
+  .back-button svg {
+    width: 14px;
+    height: 14px;
+  }
+}
