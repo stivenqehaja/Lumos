@@ -61,6 +61,8 @@ export const clientAPI = {
     finalizeCastingGroup: (data) => api.post('/client/casting-group/finalize', data),
     getCastingOrders: () => api.get('/client/casting-orders'),
     getCastingOrderById: (id) => api.get(`/client/casting-orders/${id}`),
+    getAllClients: () => api.get('/client/all'),
+    updateClientStatus: (id, data) => api.patch(`/client/${id}/status`, data),
 };
 
 // ==================== EMAIL APIs ====================

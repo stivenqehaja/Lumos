@@ -1,12 +1,9 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import ClientLinkGenerator from '../../components/admin/ClientLinkGenerator';
 import './Dashboard.css';
 
 const Dashboard = () => {
     const { user } = useAuth();
-    const [showLinkGenerator, setShowLinkGenerator] = useState(false);
 
     return (
         <div className="page-container">
@@ -28,7 +25,20 @@ const Dashboard = () => {
                         <p>Full grid view of all performers</p>
                     </Link>
 
-                    <div className="dashboard-card" onClick={() => setShowLinkGenerator(true)}>
+                    <Link to="/admin/manage-clients" className="dashboard-card">
+                        <div className="card-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h2>Manage Clients</h2>
+                        <p>View and manage all client links and status</p>
+                    </Link>
+
+                    <Link to="/admin/generate-link" className="dashboard-card">
                         <div className="card-icon">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
@@ -37,7 +47,7 @@ const Dashboard = () => {
                         </div>
                         <h2>Generate Client Link</h2>
                         <p>Create secure access links for clients</p>
-                    </div>
+                    </Link>
 
                     <Link to="/admin/casting-orders" className="dashboard-card">
                         <div className="card-icon">
@@ -76,10 +86,6 @@ const Dashboard = () => {
                     </Link>
                 </div>
             </div>
-
-            {showLinkGenerator && (
-                <ClientLinkGenerator onClose={() => setShowLinkGenerator(false)} />
-            )}
         </div>
     );
 };

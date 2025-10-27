@@ -27,6 +27,12 @@ const Client = sequelize.define('Client', {
     isActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: true
+    },
+    customHours: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        defaultValue: null,
+        comment: 'Custom hours for manual link activation. If null, uses default 24 hours.'
     }
 }, {
     timestamps: true

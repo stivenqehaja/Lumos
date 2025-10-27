@@ -7,7 +7,9 @@ import {
     getCastingGroup,
     finalizeCastingGroup,
     getAllCastingOrders,
-    getCastingOrderById
+    getCastingOrderById,
+    getAllClients,
+    updateClientStatus
 } from '../controllers/clientController.js';
 import { authenticateAdmin } from '../middleware/auth.js';
 
@@ -387,5 +389,11 @@ router.get('/casting-orders', authenticateAdmin, getAllCastingOrders);
  *               $ref: '#/components/schemas/Error'
  */
 router.get('/casting-orders/:id', authenticateAdmin, getCastingOrderById);
+
+// Get all clients for management
+router.get('/all', authenticateAdmin, getAllClients);
+
+// Update client status
+router.patch('/:id/status', authenticateAdmin, updateClientStatus);
 
 export default router;

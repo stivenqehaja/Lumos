@@ -3,16 +3,18 @@ import { Client, CastingGroup, CastingOrder, Performer } from '../models/index.j
 
 export const generateClientLink = async (req, res) => {
     try {
-        const { companyName, commercialDescription } = req.body;
+        const { companyName, commercialDescription, customHours } = req.body;
 
         const accessCode = uuidv4().split('-')[0].toUpperCase();
-        const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+        const hours = customHours || 24; // Default to 24 hours if not specified
+        const expiresAt = new Date(Date.now() + hours * 60 * 60 * 1000);
 
         const client = await Client.create({
             companyName,
             commercialDescription,
             accessCode,
-            expiresAt
+            expiresAt,
+            customHours: customHours || null
         });
 
         const clientUrl = `${process.env.BASE_URL}/client?code=${accessCode}`;
@@ -196,5 +198,65 @@ export const getCastingOrderById = async (req, res) => {
         res.json(order);
     } catch (error) {
         res.status(500).json({ error: 'Server error' });
+    }
+};
+
+// Get all clients for management
+export const getAllClients = async (req, res) => {
+    try {
+        const clients = await Client.findAll({
+            order: [['createdAt', 'DESC']]
+        });
+
+        const clientsWithStatus = clients.map(client => {
+            const isExpired = new Date() > new Date(client.expiresAt);
+            const status = !client.isActive ? 'inactive' : isExpired ? 'expired' : 'active';
+
+            return {
+                ...client.toJSON(),
+                status,
+                url: `${process.env.BASE_URL}/client?code=${client.accessCode}`
+            };
+        });
+
+        res.json({ clients: clientsWithStatus });
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
+// Update client status (activate/deactivate)
+export const updateClientStatus = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { isActive, customHours } = req.body;
+
+        const client = await Client.findByPk(id);
+
+        if (!client) {
+            return res.status(404).json({ error: 'Client not found' });
+        }
+
+        // Update isActive status
+        if (typeof isActive !== 'undefined') {
+            client.isActive = isActive;
+        }
+
+        // If customHours is provided, extend expiration
+        if (customHours) {
+            const newExpiresAt = new Date(Date.now() + customHours * 60 * 60 * 1000);
+            client.expiresAt = newExpiresAt;
+            client.customHours = customHours;
+            client.isActive = true; // Re-activate when extending
+        }
+
+        await client.save();
+
+        res.json({
+            client,
+            message: 'Client status updated successfully'
+        });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
     }
 };

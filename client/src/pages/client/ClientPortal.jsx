@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { performerAPI, clientAPI } from '../../services/api';
 import { useToast } from '../../contexts/ToastContext';
 import PerformerCard from '../../components/client/PerformerCard';
@@ -9,6 +9,7 @@ import './ClientPortal.css';
 
 const ClientPortal = () => {
     const [searchParams] = useSearchParams();
+    const navigate = useNavigate();
     const { showSuccess, showError } = useToast();
     const [performers, setPerformers] = useState([]);
     const [filteredPerformers, setFilteredPerformers] = useState([]);
@@ -49,7 +50,15 @@ const ClientPortal = () => {
             await loadAllPerformers();
             await loadCastingGroup(response.data.client.id);
         } catch (error) {
-            showError('Invalid or expired access link');
+            // Check if the error is due to expired or invalid access
+            if (error.response?.status === 403 ||
+                error.response?.status === 404 ||
+                error.response?.data?.error === 'Access code expired' ||
+                error.response?.data?.error === 'Invalid access code') {
+                navigate('/client/expired');
+            } else {
+                navigate('/client/expired');
+            }
         }
     };
 

@@ -1,0 +1,112 @@
+.expired-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-primary);
+    padding: 2rem;
+}
+
+.expired-container {
+    max-width: 600px;
+    text-align: center;
+    background: var(--bg-secondary);
+    padding: 4rem 3rem;
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+}
+
+.expired-icon {
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.expired-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.expired-message {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.expired-submessage {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+.expired-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.expired-actions .button-primary {
+    text-decoration: none;
+}
+
+.expired-info {
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.expired-info h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.expired-info p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .expired-container {
+        padding: 3rem 2rem;
+    }
+
+    .expired-title {
+        font-size: 2rem;
+    }
+
+    .expired-message {
+        font-size: 1.1rem;
+    }
+
+    .expired-actions {
+        flex-direction: column;
+    }
+
+    .expired-icon {
+        font-size: 4rem;
+    }
+}

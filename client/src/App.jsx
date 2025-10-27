@@ -10,7 +10,10 @@ import AdminDashboard from './pages/admin/Dashboard';
 import Performers from './pages/admin/Performers';
 import CastingOrders from './pages/admin/CastingOrders';
 import CastingOrderDetail from './pages/admin/CastingOrderDetail';
+import ManageClients from './pages/admin/ManageClients';
+import GenerateLink from './pages/admin/GenerateLink';
 import ClientPortal from './pages/client/ClientPortal';
+import ExpiredLink from './pages/client/ExpiredLink';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import './styles/lumos.css';
 import './App.css';
@@ -28,6 +31,7 @@ function App() {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/admin/login" element={<Login />} />
                     <Route path="/client" element={<ClientPortal />} />
+                    <Route path="/client/expired" element={<ExpiredLink />} />
 
                     {/* Protected Admin Routes */}
                     <Route
@@ -59,6 +63,22 @@ function App() {
                         element={
                             <ProtectedRoute>
                                 <CastingOrderDetail />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/admin/manage-clients"
+                        element={
+                            <ProtectedRoute>
+                                <ManageClients />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/admin/generate-link"
+                        element={
+                            <ProtectedRoute>
+                                <GenerateLink />
                             </ProtectedRoute>
                         }
                     />

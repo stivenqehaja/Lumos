@@ -16,7 +16,8 @@ export const ToastProvider = ({ children }) => {
 
     const showToast = useCallback((message, type = 'success', options = {}) => {
         const id = Date.now();
-        setToasts(prev => [...prev, {
+        // Clear all previous toasts and show only the new one
+        setToasts([{
             id,
             message,
             type,
