@@ -9,10 +9,13 @@
     font-family: 'Orbitron', sans-serif;
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700;
-    background: linear-gradient(135deg, var(--text-primary), var(--accent-primary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--accent-primary);
+    text-shadow:
+        -1px -1px 0 white,
+        1px -1px 0 white,
+        -1px 1px 0 white,
+        1px 1px 0 white,
+        0 0 10px rgba(255, 255, 255, 0.5);
     margin: 0;
     margin-bottom: 2rem;
 }

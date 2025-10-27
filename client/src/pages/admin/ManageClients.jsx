@@ -13,6 +13,8 @@ const ManageClients = () => {
     const [selectedClient, setSelectedClient] = useState(null);
     const [customHours, setCustomHours] = useState(24);
     const [copiedCode, setCopiedCode] = useState(null);
+    const [editingClientId, setEditingClientId] = useState(null);
+    const [editedName, setEditedName] = useState('');
 
     useEffect(() => {
         fetchClients();
@@ -91,8 +93,37 @@ const ManageClients = () => {
         });
     };
 
+    const handleStartEdit = (client) => {
+        setEditingClientId(client.id);
+        setEditedName(client.companyName);
+    };
+
+    const handleCancelEdit = () => {
+        setEditingClientId(null);
+        setEditedName('');
+    };
+
+    const handleSaveEdit = async (clientId) => {
+        if (!editedName.trim()) {
+            showToast('Company name cannot be empty', 'error');
+            return;
+        }
+
+        try {
+            await clientAPI.updateClientStatus(clientId, {
+                companyName: editedName.trim()
+            });
+            showToast('Company name updated successfully', 'success');
+            setEditingClientId(null);
+            setEditedName('');
+            fetchClients();
+        } catch (error) {
+            showToast('Failed to update company name', 'error');
+        }
+    };
+
     return (
-        <div className="page-container">
+        <div className="page-container manage-clients">
             <button
                 onClick={() => navigate('/admin')}
                 className="back-button"
@@ -132,7 +163,6 @@ const ManageClients = () => {
                                 <tr>
                                     <th>Company Name</th>
                                     <th>Access Code</th>
-                                    <th>Link</th>
                                     <th>Status</th>
                                     <th>Expires At</th>
                                     <th>Created</th>
@@ -142,17 +172,75 @@ const ManageClients = () => {
                             <tbody>
                                 {clients.map((client) => (
                                     <tr key={client.id}>
-                                        <td className="company-name">{client.companyName}</td>
-                                        <td className="access-code">{client.accessCode}</td>
-                                        <td className="link-cell">
-                                            <div className="link-container">
-                                                <span className="link-text">{client.url}</span>
+                                        <td className="company-name-cell">
+                                            {editingClientId === client.id ? (
+                                                <div className="edit-name-container">
+                                                    <input
+                                                        type="text"
+                                                        className="edit-name-input"
+                                                        value={editedName}
+                                                        onChange={(e) => setEditedName(e.target.value)}
+                                                        onKeyPress={(e) => {
+                                                            if (e.key === 'Enter') handleSaveEdit(client.id);
+                                                            if (e.key === 'Escape') handleCancelEdit();
+                                                        }}
+                                                        autoFocus
+                                                    />
+                                                    <button
+                                                        className="edit-btn save-btn"
+                                                        onClick={() => handleSaveEdit(client.id)}
+                                                        title="Save"
+                                                    >
+                                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                                        </svg>
+                                                    </button>
+                                                    <button
+                                                        className="edit-btn cancel-btn"
+                                                        onClick={handleCancelEdit}
+                                                        title="Cancel"
+                                                    >
+                                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            ) : (
+                                                <div className="company-name-display">
+                                                    <span className="company-name">{client.companyName}</span>
+                                                    <button
+                                                        className="edit-name-btn"
+                                                        onClick={() => handleStartEdit(client)}
+                                                        title="Edit company name"
+                                                    >
+                                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            )}
+                                        </td>
+                                        <td className="access-code-cell">
+                                            <div className="access-code-container">
+                                                <span className="access-code">{client.accessCode}</span>
                                                 <button
-                                                    className="copy-btn"
+                                                    className="copy-btn-prominent"
                                                     onClick={() => handleCopyLink(client.url, client.accessCode)}
-                                                    title="Copy link"
+                                                    title="Copy access link"
                                                 >
-                                                    {copiedCode === client.accessCode ? '✓' : '📋'}
+                                                    {copiedCode === client.accessCode ? (
+                                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                                        </svg>
+                                                    ) : (
+                                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                        </svg>
+                                                    )}
+                                                    <span className="copy-text">Copy</span>
                                                 </button>
                                             </div>
                                         </td>
