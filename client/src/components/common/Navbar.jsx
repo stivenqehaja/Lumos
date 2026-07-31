@@ -5,6 +5,7 @@ import './Navbar.css';
 
 const Navbar = () => {
     const [theme, setTheme] = useState('dark');
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { isAuthenticated, logout } = useAuth();
     const navigate = useNavigate();
 
@@ -21,14 +22,17 @@ const Navbar = () => {
         document.documentElement.setAttribute('data-theme', newTheme);
     };
 
+    const closeMenu = () => setIsMenuOpen(false);
+
     const handleLogout = () => {
+        closeMenu();
         logout();
         navigate('/');
     };
 
     return (
         <nav id="navbar">
-            <Link to="/">
+            <Link to="/" onClick={closeMenu}>
                 <img
                     src="/images/logo.jpg"
                     alt="Lumos Logo"
@@ -36,27 +40,41 @@ const Navbar = () => {
                     className="no-select"
                 />
             </Link>
-            <div id="navlink-container">
-                <Link to="/" className="nav-link">Home</Link>
-                <Link to="/about" className="nav-link">About</Link>
-                <Link to="/contact" className="nav-link">Contact</Link>
+
+            <button
+                id="menu-toggle"
+                className={isMenuOpen ? 'open' : ''}
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Toggle navigation menu"
+                aria-expanded={isMenuOpen}
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div id="navlink-container" className={isMenuOpen ? 'open' : ''}>
+                <Link to="/" className="nav-link" onClick={closeMenu}>Home</Link>
+                <Link to="/about" className="nav-link" onClick={closeMenu}>About</Link>
+                <Link to="/contact" className="nav-link" onClick={closeMenu}>Contact</Link>
                 <a
                     href="https://www.instagram.com/lumos_videos/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="nav-link"
+                    onClick={closeMenu}
                 >
                     IG
                 </a>
                 {isAuthenticated ? (
                     <>
-                        <Link to="/admin" className="nav-link admin-link">Dashboard</Link>
+                        <Link to="/admin" className="nav-link admin-link" onClick={closeMenu}>Dashboard</Link>
                         <button onClick={handleLogout} className="nav-link admin-link" style={{background: 'none', border: 'none', cursor: 'pointer'}}>
                             Logout
                         </button>
                     </>
                 ) : (
-                    <Link to="/admin/login" className="nav-link admin-link">Admin</Link>
+                    <Link to="/admin/login" className="nav-link admin-link" onClick={closeMenu}>Admin</Link>
                 )}
                 <button id="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
                     <svg className="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

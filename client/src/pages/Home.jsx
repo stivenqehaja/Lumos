@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import Footer from '../components/common/Footer';
 import './Home.css';
 
 const Home = () => {
@@ -33,6 +34,8 @@ const Home = () => {
                     About Us
                 </button>
             </section>
+
+            <Footer />
         </div>
     );
 };

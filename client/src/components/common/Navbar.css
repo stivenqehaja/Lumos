@@ -242,10 +242,88 @@
     }
 }
 
-/* Mobile Menu Animation (for future mobile menu implementation) */
-@media (max-width: 640px) {
-    /* Hide some nav links on very small screens */
-    .nav-link:not(.admin-link):nth-child(n+3) {
+/* Hamburger Menu Toggle */
+#menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+#menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-normal);
+}
+
+#menu-toggle.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+#menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+#menu-toggle.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Slide-down Menu */
+@media (max-width: 768px) {
+    #menu-toggle {
+        display: flex;
+    }
+
+    #navlink-container {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: var(--bg-overlay);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border-secondary);
+        transform: translateY(-150%);
+        opacity: 0;
+        transition: transform var(--transition-normal), opacity var(--transition-normal);
+        pointer-events: none;
+        padding: var(--space-md) 0;
+    }
+
+    #navlink-container.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    #navlink-container .nav-link,
+    #navlink-container #theme-toggle {
+        width: 100%;
+    }
+
+    .nav-link {
+        padding: var(--space-md) var(--space-lg);
+        text-align: center;
+    }
+
+    .nav-link::before {
         display: none;
+    }
+
+    #theme-toggle {
+        margin: var(--space-sm) auto 0;
     }
 }
