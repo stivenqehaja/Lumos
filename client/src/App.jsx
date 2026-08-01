@@ -1,8 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './styles/lumos.css';
 import { AuthProvider } from './contexts/AuthContext';
 import { ToastProvider } from './contexts/ToastContext';
 import Navbar from './components/common/Navbar';
 import Home from './pages/Home';
+import Work from './pages/Work';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Login from './pages/admin/Login';
@@ -15,7 +17,6 @@ import GenerateLink from './pages/admin/GenerateLink';
 import ClientPortal from './pages/client/ClientPortal';
 import ExpiredLink from './pages/client/ExpiredLink';
 import ProtectedRoute from './components/common/ProtectedRoute';
-import './styles/lumos.css';
 import './App.css';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                 <Routes>
                     {/* Public Routes */}
                     <Route path="/" element={<Home />} />
+                    <Route path="/work" element={<Work />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/admin/login" element={<Login />} />

@@ -38,7 +38,7 @@
 
 /* Logo Styling */
 #navbar-logo {
-    height: 50px;
+    height: 34px;
     width: auto;
     cursor: pointer;
     transition: all var(--transition-normal);
@@ -114,6 +114,7 @@
     cursor: pointer;
     transition: all var(--transition-normal);
     overflow: hidden;
+    color: var(--text-secondary);
 }
 
 #theme-toggle::before {
@@ -197,7 +198,7 @@
     }
 
     #navbar-logo {
-        height: 44px;
+        height: 30px;
     }
 
     #navlink-container {
@@ -220,7 +221,7 @@
     }
 
     #navbar-logo {
-        height: 40px;
+        height: 26px;
     }
 
     #navlink-container {

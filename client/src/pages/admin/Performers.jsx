@@ -141,7 +141,7 @@ const Performers = () => {
                 ) : (
                     <>
                         <div className="performers-header">
-                            <h1 className="page-title">Performers</h1>
+                            <h1 className="performers-title">Performers</h1>
                             <button
                                 onClick={() => setShowForm(true)}
                                 className="button-primary"

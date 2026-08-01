@@ -9,11 +9,12 @@ const Footer = () => {
             <div className="footer-content">
                 <div className="footer-brand">
                     <span className="footer-logo">LUMOS</span>
-                    <p className="footer-tagline">Exceptional Real Estate Videos</p>
+                    <p className="footer-tagline">Video &amp; Photo Production, Every Industry</p>
                 </div>
 
                 <nav className="footer-links" aria-label="Footer">
                     <Link to="/" className="footer-link">Home</Link>
+                    <Link to="/work" className="footer-link">Work</Link>
                     <Link to="/about" className="footer-link">About</Link>
                     <Link to="/contact" className="footer-link">Contact</Link>
                     <a

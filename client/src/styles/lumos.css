@@ -13,25 +13,29 @@
     --text-tertiary: #808080;
     --text-inverse: #000000;
 
-    /* Red Accent System */
-    --accent-primary: #dc143c;      /* Crimson Red */
-    --accent-secondary: #ff1744;     /* Bright Red */
-    --accent-tertiary: #8b0000;      /* Dark Red */
+    /* Red Accent System — sampled directly from the logo's red circle (#c11e1e) */
+    --accent-primary: #c11e1e;      /* Logo Red */
+    --accent-secondary: #e14545;     /* Bright Red */
+    --accent-tertiary: #7a1313;      /* Dark Red */
     --accent-success: #10B981;       /* Emerald Green */
     --accent-warning: #F59E0B;       /* Amber */
     --accent-error: #EF4444;         /* Red */
     --accent-info: #3B82F6;          /* Blue */
 
     /* Glow Effects */
-    --glow-primary: rgba(220, 20, 60, 0.25);
-    --glow-secondary: rgba(255, 23, 68, 0.2);
+    --glow-primary: rgba(193, 30, 30, 0.25);
+    --glow-secondary: rgba(225, 69, 69, 0.2);
     --glow-success: rgba(16, 185, 129, 0.2);
     --glow-error: rgba(239, 68, 68, 0.2);
 
     /* Border Colors */
-    --border-primary: rgba(220, 20, 60, 0.2);
+    --border-primary: rgba(193, 30, 30, 0.2);
     --border-secondary: rgba(255, 255, 255, 0.08);
-    --border-hover: rgba(220, 20, 60, 0.4);
+    --border-hover: rgba(193, 30, 30, 0.4);
+
+    /* Typography */
+    --font-display: 'Archivo', sans-serif;
+    --font-body: 'Inter', sans-serif;
 
     /* Shadow System */
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.12);
@@ -83,24 +87,24 @@
     --text-inverse: #ffffff;
 
     /* Red Accent System (same as dark) */
-    --accent-primary: #dc143c;
-    --accent-secondary: #ff1744;
-    --accent-tertiary: #8b0000;
+    --accent-primary: #c11e1e;
+    --accent-secondary: #e14545;
+    --accent-tertiary: #7a1313;
     --accent-success: #10B981;
     --accent-warning: #F59E0B;
     --accent-error: #EF4444;
     --accent-info: #3B82F6;
 
     /* Light Mode Glow Effects */
-    --glow-primary: rgba(220, 20, 60, 0.15);
-    --glow-secondary: rgba(255, 23, 68, 0.12);
+    --glow-primary: rgba(193, 30, 30, 0.15);
+    --glow-secondary: rgba(225, 69, 69, 0.12);
     --glow-success: rgba(16, 185, 129, 0.15);
     --glow-error: rgba(239, 68, 68, 0.15);
 
     /* Light Mode Border Colors */
-    --border-primary: rgba(220, 20, 60, 0.2);
+    --border-primary: rgba(193, 30, 30, 0.2);
     --border-secondary: rgba(0, 0, 0, 0.1);
-    --border-hover: rgba(220, 20, 60, 0.4);
+    --border-hover: rgba(193, 30, 30, 0.4);
 
     /* Light Mode Shadows */
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -133,7 +137,7 @@ html {
 body {
     background: var(--bg-primary);
     color: var(--text-primary);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: var(--font-body), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -192,16 +196,16 @@ a:hover {
 
 /* ==================== TYPOGRAPHY ==================== */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    line-height: 1.2;
+    font-family: var(--font-display), sans-serif;
+    font-weight: 900;
+    line-height: 1.1;
     letter-spacing: -0.02em;
     color: var(--text-primary);
 }
 
 h1 {
     font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 800;
+    font-weight: 900;
 }
 
 h2 {
@@ -223,6 +227,32 @@ p {
 }
 
 /* Removed gradient text - keeping solid colors for readability */
+
+/* Bold display / thin body contrast pairing */
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-family: var(--font-body), sans-serif;
+    font-weight: 300;
+    font-size: 0.8125rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+}
+
+.eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 1.5px;
+    background: var(--accent-primary);
+}
+
+.section-heading {
+    font-family: var(--font-display), sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+}
 
 /* ==================== MODERN BUTTON SYSTEM ==================== */
 .button-primary {
@@ -598,6 +628,17 @@ input[type="number"] {
     }
     to {
         transform: rotate(360deg);
+    }
+}
+
+.reveal {
+    opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        animation: none !important;
     }
 }
 

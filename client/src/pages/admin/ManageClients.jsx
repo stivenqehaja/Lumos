@@ -134,7 +134,7 @@ const ManageClients = () => {
                 Back
             </button>
             <div className="content-wrapper">
-                <div className="page-header">
+                <div className="manage-clients-header">
                     <h1 className="page-title">Manage Clients</h1>
                     <button
                         className="button-primary"

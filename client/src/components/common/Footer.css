@@ -30,10 +30,10 @@
 }
 
 .footer-logo {
-    font-family: 'Orbitron', sans-serif;
+    font-family: var(--font-display), sans-serif;
     font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
+    font-weight: 900;
+    letter-spacing: 0.05em;
     color: var(--text-primary);
 }
 

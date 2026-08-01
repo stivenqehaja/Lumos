@@ -34,7 +34,7 @@ const Navbar = () => {
         <nav id="navbar">
             <Link to="/" onClick={closeMenu}>
                 <img
-                    src="/images/logo.jpg"
+                    src={theme === 'light' ? '/images/logo-black.png' : '/images/logo-white.png'}
                     alt="Lumos Logo"
                     id="navbar-logo"
                     className="no-select"
@@ -55,6 +55,7 @@ const Navbar = () => {
 
             <div id="navlink-container" className={isMenuOpen ? 'open' : ''}>
                 <Link to="/" className="nav-link" onClick={closeMenu}>Home</Link>
+                <Link to="/work" className="nav-link" onClick={closeMenu}>Work</Link>
                 <Link to="/about" className="nav-link" onClick={closeMenu}>About</Link>
                 <Link to="/contact" className="nav-link" onClick={closeMenu}>Contact</Link>
                 <a
@@ -66,15 +67,13 @@ const Navbar = () => {
                 >
                     IG
                 </a>
-                {isAuthenticated ? (
+                {isAuthenticated && (
                     <>
                         <Link to="/admin" className="nav-link admin-link" onClick={closeMenu}>Dashboard</Link>
                         <button onClick={handleLogout} className="nav-link admin-link" style={{background: 'none', border: 'none', cursor: 'pointer'}}>
                             Logout
                         </button>
                     </>
-                ) : (
-                    <Link to="/admin/login" className="nav-link admin-link" onClick={closeMenu}>Admin</Link>
                 )}
                 <button id="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
                     <svg className="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
