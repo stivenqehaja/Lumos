@@ -17,6 +17,7 @@ import GenerateLink from './pages/admin/GenerateLink';
 import ClientPortal from './pages/client/ClientPortal';
 import ExpiredLink from './pages/client/ExpiredLink';
 import ProtectedRoute from './components/common/ProtectedRoute';
+import ScrollToTop from './components/common/ScrollToTop';
 import './App.css';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <ToastProvider>
             <AuthProvider>
                 <Router>
+                <ScrollToTop />
                 <Navbar />
                 <Routes>
                     {/* Public Routes */}
