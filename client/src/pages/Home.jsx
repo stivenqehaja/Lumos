@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../components/common/Footer';
+import LumixHero from '../components/home/LumixHero';
 import Reveal from '../components/common/Reveal';
 import TestimonialStrip from '../components/common/TestimonialStrip';
 import { CATEGORIES, projects } from '../data/projects';
@@ -12,27 +13,7 @@ const Home = () => {
 
     return (
         <div className="home-page">
-            <section className="landing-section">
-                <div className="landing-bg" />
-                <div className="landing-scrim" />
-                <div className="landing-content">
-                    <span className="eyebrow landing-eyebrow">Video &amp; Photo Production</span>
-                    <h1 className="landing-title">WE ARE <br />LUMOS</h1>
-                    <p className="landing-subtitle">
-                        Real estate, hospitality, healthcare, automotive, broadcast &mdash; one crew,
-                        every industry, cinematic results.
-                    </p>
-                    <div className="landing-actions">
-                        <button className="button-normal" onClick={() => navigate('/work')}>
-                            See Our Work
-                        </button>
-                        <Link to="/contact" className="button-ghost-link">
-                            Book a Shoot &rarr;
-                        </Link>
-                    </div>
-                </div>
-                <span className="scroll-cue" aria-hidden="true"><span className="scroll-cue-dot" /></span>
-            </section>
+            <LumixHero />
 
             <section className="category-section">
                 <Reveal>

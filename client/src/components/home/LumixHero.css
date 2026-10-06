@@ -1,0 +1,285 @@
+/* ==================== HERO: LUMIX S1II STAGE ==================== *
+ * The hero is a lit instrument in a dark room. Everything here stays
+ * quiet so the camera and its red accent ring carry the frame.
+ * The hero holds its dark treatment in both themes, as it did before —
+ * it reads as a set, not as page chrome.
+ * -------------------------------------------------------------- */
+
+.landing-section {
+    position: relative;
+    overflow: hidden;
+    min-height: calc(100svh - 80px);
+    display: grid;
+    align-items: center;
+    background: #06060a;
+    isolation: isolate;
+}
+
+/* ---------- Stage ---------- */
+
+.landing-stage {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Backlit scrim behind the body, so it is lifted off the black rather than
+   floating in a void. Doubles as the pre-load and no-WebGL stand-in. */
+.landing-halo {
+    position: absolute;
+    top: 50%;
+    left: 68%;
+    width: min(78vw, 60rem);
+    aspect-ratio: 1;
+    max-width: 100%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(142, 166, 204, 0.16) 0%,
+        rgba(92, 112, 148, 0.09) 34%,
+        rgba(6, 6, 10, 0) 68%
+    );
+}
+
+/* The red kicker, echoing the point light inside the scene. */
+.landing-kicker {
+    position: absolute;
+    top: 62%;
+    left: 52%;
+    width: min(46vw, 34rem);
+    aspect-ratio: 1;
+    max-width: 100%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(193, 30, 30, 0.2) 0%,
+        rgba(193, 30, 30, 0.07) 40%,
+        rgba(6, 6, 10, 0) 70%
+    );
+}
+
+.landing-canvas {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.1s ease;
+}
+
+.landing-canvas.is-ready {
+    opacity: 1;
+}
+
+.landing-canvas canvas {
+    display: block;
+}
+
+/* ---------- Copy ---------- */
+
+.landing-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 5rem);
+    /* Lifts and fades as the hero scrolls away, against the camera's drift. */
+    transform: translateY(calc(var(--hero-scroll, 0) * -48px));
+    opacity: calc(1 - var(--hero-scroll, 0) * 1.4);
+}
+
+.landing-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-lg);
+    max-width: 34rem;
+    text-align: left;
+}
+
+.landing-copy > * {
+    animation: heroRise 0.9s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.landing-copy > *:nth-child(1) { animation-delay: 0.05s; }
+.landing-copy > *:nth-child(2) { animation-delay: 0.14s; }
+.landing-copy > *:nth-child(3) { animation-delay: 0.23s; }
+.landing-copy > *:nth-child(4) { animation-delay: 0.32s; }
+
+@keyframes heroRise {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.landing-eyebrow {
+    color: rgba(255, 255, 255, 0.92);
+    white-space: nowrap;
+}
+
+.landing-eyebrow::before {
+    background: var(--accent-primary);
+}
+
+.landing-title {
+    margin: 0;
+    font-family: var(--font-display), sans-serif;
+    font-size: clamp(2.75rem, 8.5vw, 7rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    color: #ffffff;
+    text-wrap: balance;
+}
+
+.landing-subtitle {
+    margin: 0;
+    max-width: 30rem;
+    font-family: var(--font-body), sans-serif;
+    font-weight: 300;
+    font-size: clamp(1rem, 1.5vw, 1.1875rem);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.landing-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+    flex-wrap: wrap;
+    margin-top: var(--space-sm);
+}
+
+.button-ghost-link {
+    font-family: var(--font-display), sans-serif;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+    border-bottom: 1.5px solid transparent;
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+    white-space: nowrap;
+}
+
+.button-ghost-link:hover,
+.button-ghost-link:focus-visible {
+    color: var(--accent-secondary);
+    border-color: var(--accent-secondary);
+}
+
+/* ---------- Scroll cue ---------- */
+
+.scroll-cue {
+    position: absolute;
+    left: 50%;
+    bottom: var(--space-xl);
+    transform: translateX(-50%);
+    z-index: 1;
+    width: 26px;
+    height: 42px;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: var(--radius-full);
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+    opacity: calc(1 - var(--hero-scroll, 0) * 3);
+}
+
+.scroll-cue-dot {
+    width: 4px;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background: var(--accent-primary);
+    animation: scrollCue 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollCue {
+    0% { opacity: 1; transform: translateY(0); }
+    70% { opacity: 0; transform: translateY(14px); }
+    100% { opacity: 0; transform: translateY(14px); }
+}
+
+/* ---------- Responsive ---------- */
+
+/* Camera above, copy below. Mirrors the scene's own narrow layout, which
+   centres and lifts the body at the same breakpoint. */
+@media (max-width: 900px) {
+    .landing-section {
+        align-items: end;
+    }
+
+    .landing-content {
+        padding-bottom: clamp(4rem, 14vh, 8rem);
+    }
+
+    .landing-copy {
+        max-width: none;
+        align-items: center;
+        text-align: center;
+    }
+
+    .landing-subtitle {
+        max-width: 34rem;
+    }
+
+    .landing-halo {
+        top: 34%;
+        left: 50%;
+    }
+
+    .landing-kicker {
+        top: 44%;
+        left: 42%;
+    }
+}
+
+@media (max-width: 480px) {
+    .scroll-cue {
+        display: none;
+    }
+
+    .landing-eyebrow {
+        font-size: 0.6875rem;
+        letter-spacing: 0.15em;
+        gap: var(--space-xs);
+    }
+
+    .landing-eyebrow::before {
+        width: 16px;
+    }
+
+    .landing-section .button-normal {
+        padding: 0.9rem 1.75rem;
+        font-size: 0.8125rem;
+    }
+
+    .landing-actions {
+        flex-direction: column;
+        gap: var(--space-md);
+        align-self: stretch;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .landing-copy > * {
+        animation: none;
+    }
+
+    .scroll-cue-dot {
+        animation: none;
+    }
+
+    .landing-canvas {
+        transition: none;
+    }
+
+    .landing-content {
+        transform: none;
+        opacity: 1;
+    }
+}
