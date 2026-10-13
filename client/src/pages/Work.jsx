@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Footer from '../components/common/Footer';
 import Reveal from '../components/common/Reveal';
@@ -6,6 +6,42 @@ import { CATEGORIES, getProjectsByCategory } from '../data/projects';
 import './Work.css';
 
 const ALL = 'All';
+
+// With ~100 clips on the page, autoplaying them all would download hundreds of MB.
+// Cards show the poster and only fetch/play the clip while hovered or focused.
+const HoverVideo = ({ src, poster, className }) => {
+    const ref = useRef(null);
+
+    const play = () => {
+        const video = ref.current;
+        if (video) video.play().catch(() => {});
+    };
+    const stop = () => {
+        const video = ref.current;
+        if (video) video.pause();
+    };
+
+    useEffect(() => {
+        const card = ref.current?.parentElement;
+        if (!card) return undefined;
+        card.addEventListener('mouseenter', play);
+        card.addEventListener('mouseleave', stop);
+        card.addEventListener('focus', play);
+        card.addEventListener('blur', stop);
+        return () => {
+            card.removeEventListener('mouseenter', play);
+            card.removeEventListener('mouseleave', stop);
+            card.removeEventListener('focus', play);
+            card.removeEventListener('blur', stop);
+        };
+    }, []);
+
+    return (
+        <video ref={ref} className={className} poster={poster} muted loop playsInline preload="none">
+            <source src={src} type="video/mp4" />
+        </video>
+    );
+};
 
 const Work = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -84,9 +120,7 @@ const Work = () => {
                                 aria-label={`Open ${project.title}`}
                             >
                                 {project.mediaType === 'video' ? (
-                                    <video className="work-card-media" muted loop autoPlay playsInline>
-                                        <source src={project.src} type="video/mp4" />
-                                    </video>
+                                    <HoverVideo className="work-card-media" src={project.src} poster={project.poster} />
                                 ) : (
                                     <img className="work-card-media" src={project.src} alt={project.title} loading="lazy" />
                                 )}
@@ -109,7 +143,7 @@ const Work = () => {
                             &times;
                         </button>
                         {lightboxProject.mediaType === 'video' ? (
-                            <video className="lightbox-media" controls autoPlay loop playsInline>
+                            <video className="lightbox-media" controls autoPlay loop playsInline poster={lightboxProject.poster}>
                                 <source src={lightboxProject.src} type="video/mp4" />
                             </video>
                         ) : (

@@ -18,7 +18,7 @@ const Home = () => {
             <section className="category-section">
                 <Reveal>
                     <span className="eyebrow">What We Shoot</span>
-                    <h2 className="section-heading category-title">Nine Industries. One Crew.</h2>
+                    <h2 className="section-heading category-title">Eight Industries. One Crew.</h2>
                 </Reveal>
 
                 <div className="category-grid">
@@ -40,7 +40,7 @@ const Home = () => {
                 <div className="video-container">
                     {featuredProjects.map((project, index) => (
                         <Reveal key={project.id} delay={index * 0.1} className="video-card">
-                            <video className="video-vertical" autoPlay muted loop playsInline>
+                            <video className="video-vertical" autoPlay muted loop playsInline poster={project.poster}>
                                 <source src={project.src} type="video/mp4" />
                             </video>
                             <div className="video-card-caption">
