@@ -1,13 +1,17 @@
-// Production deploy for lumosvideos.com: an assets-only Worker serving the Vite build.
+// Production deploy for lumosvideos.com: a Worker serving the Vite build as static assets.
 // Build, then deploy:  npm run build && npx wrangler deploy
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "lumos",
+  "main": "./worker/index.js",
   "compatibility_date": "2026-10-01",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     // React Router handles paths like /work, so unknown paths fall back to index.html.
-    "not_found_handling": "single-page-application"
+    "not_found_handling": "single-page-application",
+    // Only videos go through the script, which adds byte-range (206) support for iOS Safari.
+    "run_worker_first": ["/videos/*"]
   },
   "routes": [
     { "pattern": "lumosvideos.com", "custom_domain": true },
