@@ -1,0 +1,16 @@
+// Production deploy for lumosvideos.com: an assets-only Worker serving the Vite build.
+// Build, then deploy:  npm run build && npx wrangler deploy
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "lumos",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    // React Router handles paths like /work, so unknown paths fall back to index.html.
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [
+    { "pattern": "lumosvideos.com", "custom_domain": true },
+    { "pattern": "www.lumosvideos.com", "custom_domain": true }
+  ]
+}
