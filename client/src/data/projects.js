@@ -5,11 +5,10 @@
 
 export const CATEGORIES = [
     'Real Estate',
-    'Clinic',
+    'Clinics',
     'Restaurants',
     'Resorts',
     'Commercials',
-    'Podcasts',
     'Cars',
     'Photoshoots',
 ];
@@ -27,7 +26,7 @@ export const projects = [
     {
         id: 'red-room',
         title: 'Red Room',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/red-room.mp4',
         poster: '/videos/clinic/red-room.jpg',
@@ -81,7 +80,7 @@ export const projects = [
     {
         id: 'hair-solution-clinic-patient-story',
         title: 'Hair Solution Clinic — Patient Story',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/hair-solution-clinic-patient-story.mp4',
         poster: '/videos/clinic/hair-solution-clinic-patient-story.jpg',
@@ -136,7 +135,7 @@ export const projects = [
     {
         id: 'domus-dental',
         title: 'Domus Dental',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/domus-dental.mp4',
         poster: '/videos/clinic/domus-dental.jpg',
@@ -182,7 +181,7 @@ export const projects = [
     {
         id: 'clinic-welcome',
         title: 'Clinic Welcome',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/clinic-welcome.mp4',
         poster: '/videos/clinic/clinic-welcome.jpg',
@@ -227,7 +226,7 @@ export const projects = [
     {
         id: 'hair-solution-clinic-the-doctor',
         title: 'Hair Solution Clinic — The Doctor',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/hair-solution-clinic-the-doctor.mp4',
         poster: '/videos/clinic/hair-solution-clinic-the-doctor.jpg',
@@ -264,7 +263,7 @@ export const projects = [
     {
         id: 'savoir-renew-lift-facial',
         title: 'Savoir — Renew, Lift, Facial',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/savoir-renew-lift-facial.mp4',
         poster: '/videos/clinic/savoir-renew-lift-facial.jpg',
@@ -300,7 +299,7 @@ export const projects = [
     {
         id: 'savoir-body-treatments',
         title: 'Savoir — Body Treatments',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/savoir-body-treatments.mp4',
         poster: '/videos/clinic/savoir-body-treatments.jpg',
@@ -336,7 +335,7 @@ export const projects = [
     {
         id: 'dental-asmr',
         title: 'Dental ASMR',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/dental-asmr.mp4',
         poster: '/videos/clinic/dental-asmr.jpg',
@@ -372,7 +371,7 @@ export const projects = [
     {
         id: 'clinic-atmosphere',
         title: 'Clinic Atmosphere',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/clinic-atmosphere.mp4',
         poster: '/videos/clinic/clinic-atmosphere.jpg',
@@ -399,7 +398,7 @@ export const projects = [
     {
         id: 'savoir-offers',
         title: 'Savoir — Offers',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/savoir-offers.mp4',
         poster: '/videos/clinic/savoir-offers.jpg',
@@ -426,7 +425,7 @@ export const projects = [
     {
         id: 'hair-solution-clinic-testimonial',
         title: 'Hair Solution Clinic — Testimonial',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/hair-solution-clinic-testimonial.mp4',
         poster: '/videos/clinic/hair-solution-clinic-testimonial.jpg',
@@ -453,7 +452,7 @@ export const projects = [
     {
         id: 'brow-treatment',
         title: 'Brow Treatment',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/brow-treatment.mp4',
         poster: '/videos/clinic/brow-treatment.jpg',
@@ -471,7 +470,7 @@ export const projects = [
     {
         id: 'premium-dental-care-the-clinic',
         title: 'Premium Dental Care — The Clinic',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/premium-dental-care-the-clinic.mp4',
         poster: '/videos/clinic/premium-dental-care-the-clinic.jpg',
@@ -489,7 +488,7 @@ export const projects = [
     {
         id: 'dermaplus-offers',
         title: 'Dermaplus — Offers',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/dermaplus-offers.mp4',
         poster: '/videos/clinic/dermaplus-offers.jpg',
@@ -507,7 +506,7 @@ export const projects = [
     {
         id: 'savoir-client-visit',
         title: 'Savoir — Client Visit',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/savoir-client-visit.mp4',
         poster: '/videos/clinic/savoir-client-visit.jpg',
@@ -525,7 +524,7 @@ export const projects = [
     {
         id: 'savoir-short',
         title: 'Savoir — Short',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/savoir-short.mp4',
         poster: '/videos/clinic/savoir-short.jpg',
@@ -543,7 +542,7 @@ export const projects = [
     {
         id: 'savoir-anti-cellulite-massage',
         title: 'Savoir — Anti-Cellulite Massage',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/savoir-anti-cellulite-massage.mp4',
         poster: '/videos/clinic/savoir-anti-cellulite-massage.jpg',
@@ -561,7 +560,7 @@ export const projects = [
     {
         id: 'wellness-massage',
         title: 'Wellness Massage',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/wellness-massage.mp4',
         poster: '/videos/clinic/wellness-massage.jpg',
@@ -579,7 +578,7 @@ export const projects = [
     {
         id: 'premium-dental-care-services',
         title: 'Premium Dental Care — Services',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/premium-dental-care-services.mp4',
         poster: '/videos/clinic/premium-dental-care-services.jpg',
@@ -597,7 +596,7 @@ export const projects = [
     {
         id: 'savoir-treatments',
         title: 'Savoir — Treatments',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/savoir-treatments.mp4',
         poster: '/videos/clinic/savoir-treatments.jpg',
@@ -615,7 +614,7 @@ export const projects = [
     {
         id: 'hair-solution-clinic-transplant-story',
         title: 'Hair Solution Clinic — Transplant Story',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/hair-solution-clinic-transplant-story.mp4',
         poster: '/videos/clinic/hair-solution-clinic-transplant-story.jpg',
@@ -624,7 +623,7 @@ export const projects = [
     {
         id: 'hair-solution-clinic-the-procedure',
         title: 'Hair Solution Clinic — The Procedure',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/hair-solution-clinic-the-procedure.mp4',
         poster: '/videos/clinic/hair-solution-clinic-the-procedure.jpg',
@@ -633,7 +632,7 @@ export const projects = [
     {
         id: 'hair-solution-clinic-results',
         title: 'Hair Solution Clinic — Results',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/hair-solution-clinic-results.mp4',
         poster: '/videos/clinic/hair-solution-clinic-results.jpg',
@@ -642,7 +641,7 @@ export const projects = [
     {
         id: 'hair-solution-clinic-time-machine',
         title: 'Hair Solution Clinic — Time Machine',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/hair-solution-clinic-time-machine.mp4',
         poster: '/videos/clinic/hair-solution-clinic-time-machine.jpg',
@@ -651,7 +650,7 @@ export const projects = [
     {
         id: 'hemera-medical-center',
         title: 'Hemera Medical Center',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/hemera-medical-center.mp4',
         poster: '/videos/clinic/hemera-medical-center.jpg',
@@ -660,7 +659,7 @@ export const projects = [
     {
         id: 'premium-dental-care-whitening',
         title: 'Premium Dental Care — Whitening',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/premium-dental-care-whitening.mp4',
         poster: '/videos/clinic/premium-dental-care-whitening.jpg',
@@ -669,7 +668,7 @@ export const projects = [
     {
         id: 'premium-dental-care-family-visit',
         title: 'Premium Dental Care — Family Visit',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/premium-dental-care-family-visit.mp4',
         poster: '/videos/clinic/premium-dental-care-family-visit.jpg',
@@ -678,7 +677,7 @@ export const projects = [
     {
         id: 'premium-dental-care-q-a',
         title: 'Premium Dental Care — Q&A',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/premium-dental-care-q-a.mp4',
         poster: '/videos/clinic/premium-dental-care-q-a.jpg',
@@ -687,7 +686,7 @@ export const projects = [
     {
         id: 'premium-dental-care-air-flow',
         title: 'Premium Dental Care — Air Flow',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/premium-dental-care-air-flow.mp4',
         poster: '/videos/clinic/premium-dental-care-air-flow.jpg',
@@ -696,7 +695,7 @@ export const projects = [
     {
         id: 'savoir-lip-filler',
         title: 'Savoir — Lip Filler',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/savoir-lip-filler.mp4',
         poster: '/videos/clinic/savoir-lip-filler.jpg',
@@ -705,7 +704,7 @@ export const projects = [
     {
         id: 'hair-solution-clinic-recovery',
         title: 'Hair Solution Clinic — Recovery',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/hair-solution-clinic-recovery.mp4',
         poster: '/videos/clinic/hair-solution-clinic-recovery.jpg',
@@ -714,7 +713,7 @@ export const projects = [
     {
         id: 'scalp-treatment',
         title: 'Scalp Treatment',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/scalp-treatment.mp4',
         poster: '/videos/clinic/scalp-treatment.jpg',
@@ -723,7 +722,7 @@ export const projects = [
     {
         id: 'hair-solution-clinic-patient-diary',
         title: 'Hair Solution Clinic — Patient Diary',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/hair-solution-clinic-patient-diary.mp4',
         poster: '/videos/clinic/hair-solution-clinic-patient-diary.jpg',
@@ -732,7 +731,7 @@ export const projects = [
     {
         id: 'savoir-skin-care',
         title: 'Savoir — Skin Care',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/savoir-skin-care.mp4',
         poster: '/videos/clinic/savoir-skin-care.jpg',
@@ -741,7 +740,7 @@ export const projects = [
     {
         id: 'savoir-signature-treatments',
         title: 'Savoir — Signature Treatments',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/savoir-signature-treatments.mp4',
         poster: '/videos/clinic/savoir-signature-treatments.jpg',
@@ -750,7 +749,7 @@ export const projects = [
     {
         id: 'savoir-outdoor-massage',
         title: 'Savoir — Outdoor Massage',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/savoir-outdoor-massage.mp4',
         poster: '/videos/clinic/savoir-outdoor-massage.jpg',
@@ -759,7 +758,7 @@ export const projects = [
     {
         id: 'savoir-halloween',
         title: 'Savoir — Halloween',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/savoir-halloween.mp4',
         poster: '/videos/clinic/savoir-halloween.jpg',
@@ -768,7 +767,7 @@ export const projects = [
     {
         id: 'savoir-pink-october',
         title: 'Savoir — Pink October',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/savoir-pink-october.mp4',
         poster: '/videos/clinic/savoir-pink-october.jpg',
@@ -777,7 +776,7 @@ export const projects = [
     {
         id: 'pegasus-thyroid-package',
         title: 'Pegasus — Thyroid Package',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/pegasus-thyroid-package.mp4',
         poster: '/videos/clinic/pegasus-thyroid-package.jpg',
@@ -786,7 +785,7 @@ export const projects = [
     {
         id: 'premium-dental-care-patient-visit',
         title: 'Premium Dental Care — Patient Visit',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/premium-dental-care-patient-visit.mp4',
         poster: '/videos/clinic/premium-dental-care-patient-visit.jpg',
@@ -795,7 +794,7 @@ export const projects = [
     {
         id: 'hair-solution-clinic-before-after',
         title: 'Hair Solution Clinic — Before & After',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/hair-solution-clinic-before-after.mp4',
         poster: '/videos/clinic/hair-solution-clinic-before-after.jpg',
@@ -804,7 +803,7 @@ export const projects = [
     {
         id: 'savoir-dermapen',
         title: 'Savoir — Dermapen',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/savoir-dermapen.mp4',
         poster: '/videos/clinic/savoir-dermapen.jpg',
@@ -813,7 +812,7 @@ export const projects = [
     {
         id: 'hair-solution-clinic-milan',
         title: 'Hair Solution Clinic — Milan',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/hair-solution-clinic-milan.mp4',
         poster: '/videos/clinic/hair-solution-clinic-milan.jpg',
@@ -822,7 +821,7 @@ export const projects = [
     {
         id: 'hair-solution-clinic-one-year-on',
         title: 'Hair Solution Clinic — One Year On',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/hair-solution-clinic-one-year-on.mp4',
         poster: '/videos/clinic/hair-solution-clinic-one-year-on.jpg',
@@ -831,7 +830,7 @@ export const projects = [
     {
         id: 'hair-solution-clinic-operating-room',
         title: 'Hair Solution Clinic — Operating Room',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/hair-solution-clinic-operating-room.mp4',
         poster: '/videos/clinic/hair-solution-clinic-operating-room.jpg',
@@ -840,7 +839,7 @@ export const projects = [
     {
         id: 'savoir-facial',
         title: 'Savoir — Facial',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/savoir-facial.mp4',
         poster: '/videos/clinic/savoir-facial.jpg',
@@ -849,7 +848,7 @@ export const projects = [
     {
         id: 'premium-dental-care-smile-makeover',
         title: 'Premium Dental Care — Smile Makeover',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/premium-dental-care-smile-makeover.mp4',
         poster: '/videos/clinic/premium-dental-care-smile-makeover.jpg',
@@ -858,7 +857,7 @@ export const projects = [
     {
         id: 'wood-therapy',
         title: 'Wood Therapy',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/wood-therapy.mp4',
         poster: '/videos/clinic/wood-therapy.jpg',
@@ -867,7 +866,7 @@ export const projects = [
     {
         id: 'laser-brow-treatment',
         title: 'Laser Brow Treatment',
-        category: 'Clinic',
+        category: 'Clinics',
         mediaType: 'video',
         src: '/videos/clinic/laser-brow-treatment.mp4',
         poster: '/videos/clinic/laser-brow-treatment.jpg',

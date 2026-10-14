@@ -18,7 +18,7 @@ const Home = () => {
             <section className="category-section">
                 <Reveal>
                     <span className="eyebrow">What We Shoot</span>
-                    <h2 className="section-heading category-title">Eight Industries. One Crew.</h2>
+                    <h2 className="section-heading category-title">Seven Industries. One Crew.</h2>
                 </Reveal>
 
                 <div className="category-grid">
